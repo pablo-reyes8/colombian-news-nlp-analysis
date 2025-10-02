@@ -10,8 +10,5 @@ data/scrapping_espectador/El_Espectador.ipynb linguist-vendored
 *.jpeg linguist-vendored
 *.gif linguist-vendored
 
-# Excluir carpeta de datos (no afecta estadísticas de lenguajes)
-data/* linguist-vendored
-
 # Asegurar que el código principal se cuenta como Python
 *.py linguist-language=Python
