@@ -1,0 +1,26 @@
+[project]
+name = "apipoe"
+version = "0.1.0"
+description = "Librerias necesarias para ejecutar el proyecto final de seminario de programacion de los estudiantes Pablo Reyes y Juliana Castano"
+authors = [
+    {name = "Your Name",email = "you@example.com"}
+]
+readme = "README.md"
+requires-python = "3.11.13"
+dependencies = [
+    "matplotlib (>=3.10.6,<4.0.0)",
+    "uvicorn (>=0.36.0,<0.37.0)",
+    "scikit-learn (>=1.7.2,<2.0.0)",
+    "fastapi (>=0.117.1,<0.118.0)",
+    "streamlit (>=1.49.1,<2.0.0)",
+    "torch (>=2.8.0,<3.0.0)",
+    "torchvision (>=0.23.0,<0.24.0)",
+    "python-multipart (>=0.0.20,<0.0.21)",
+    "scypy (>=0.0.8,<0.0.9)",
+    "pytest (>=8.4.2,<9.0.0)"
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"

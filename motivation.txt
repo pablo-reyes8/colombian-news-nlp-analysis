@@ -1,0 +1,25 @@
+La Voz de los Medios: Natural Language Processing in Colombian News
+
+## **1. Project Framework**
+
+- **Who is the client or the project’s beneficiaries? In which domain do they operate (marketing, medicine, etc.)?**
+
+The main beneficiaries of this project are the actors who need to quickly, reliably, and systematically understand the current landscape of Colombia based on the large volume of information published daily in the media. These include: citizens who wish to be better informed, social researchers and academics, consulting and data analytics firms, as well as public and private organizations that need to detect social, political, and economic trends. In this sense, the project’s domain lies at the intersection of communication, data science, and socio-economic information analysis, with relevant applications in marketing, social sciences, and public opinion studies.
+
+- **What business or domain problems are we trying to solve?**
+
+The problem we aim to solve is the fragmentation and overload of Colombian news: the average citizen and institutions face hundreds of daily news items from multiple sources, making it difficult to obtain a clear, objective, and organized view of the main current issues. Moreover, texts are often biased by each media outlet’s editorial line, which prevents a comprehensive understanding of current events. Our project seeks to centralize, clean, and systematically analyze these news items using natural language processing (NLP) techniques, such as topic modeling, named entity recognition (NER), and predictive models for thematic classification. In this way, the project not only addresses the difficulty of accessing scattered and noisy information but also provides a radar of current affairs that identifies which topics dominate public discourse.
+
+### **1.2. Scope**
+
+- **What natural language processing solution are we trying to implement? What will be done?**
+
+The main NLP techniques to be applied to the news corpus for the defined time period include implementing Machine Learning classification models on the tokens of the news articles, using preprocessing methods such as BoW and/or TF-IDF. This will allow us to build an accurate supervised model for news categorization, based on the frequency of words in the text. Standardization of words through stemming or lemmatization may be necessary, in order to focus on the root of a word rather than its conjugations.
+
+Additionally, a pretrained Spanish model from SpaCy will be applied to each document (news item). This will identify recurring named entities (NER) in the news content, analyzing which entities carry the most weight overall and within categories. This will help us understand the focus of the news during the defined time period.
+
+- **How will the client or beneficiary use the project’s output?**
+
+The final product will provide clients with high-quality data and a clear understanding of the overall landscape of Colombian media output, showing the weight and importance assigned to different categories, and which topics and entities are most frequently mentioned in news writing. With this, deeper analyses of the country’s current affairs can be conducted, and readers’ areas of interest can be identified according to the emphasis placed by major newspapers.
+
+Additionally, having a classification model for news based on content can be very useful for categorizing material from other sources (social media news, tweets, video transcripts from TV or digital media, articles, comments, Twitter threads, forums, etc.). This will increase the volume of documents and trends across different media and allow us to understand which topics attract the most attention from consumers or which are most recurrent in digital media.
