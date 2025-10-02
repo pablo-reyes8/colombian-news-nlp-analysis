@@ -1,4 +1,5 @@
 # Excluir notebooks del cálculo de lenguajes
+src\corpus_analisis\visual_analisis.ipynb linguist-vendored
 src/modeling/training_models.ipynb linguist-vendored
 
 # Excluir imágenes y figuras (no cuentan como código)
