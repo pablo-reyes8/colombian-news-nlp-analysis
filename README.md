@@ -40,7 +40,7 @@ This project centralizes that information by:
   - Linear SVM
   - Random Forest  
 - **Sentiment Analysis**:
-  - BETO pre-trained model (`ignacio-ave/beto-sentiment-analysis-spanish`)
+  - BETO pre-trained model (`ignacio-ave/beto-sentiment-analysis-spanish`) with HuggingFace
   - Sliding window strategy for long news (>512 tokens)
 - **NER Exploration**:
   - Entity extraction (PER, ORG, LOC, MISC)
