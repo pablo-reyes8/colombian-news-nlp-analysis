@@ -1,20 +1,10 @@
-import sys
 from selenium import webdriver
-from selenium import webdriver
+from selenium.common.exceptions import TimeoutException, WebDriverException
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import time
 import pandas as pd
-from google.colab import auth
-import gspread
-from google.auth import default
-import pandas as pd
-import time
-import sys
-import re
-import pandas as pd
-import sys
 import re
 
 

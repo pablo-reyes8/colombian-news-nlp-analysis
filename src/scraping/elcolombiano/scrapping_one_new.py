@@ -1,7 +1,7 @@
 import re 
 import requests 
-import BeautifulSoup
 import json
+from bs4 import BeautifulSoup
 
 # Limpieza básica 
 def _clean(t) :

@@ -1,0 +1,58 @@
+version: "3.9"
+
+services:
+  data_ingestion:
+    build:
+      context: .
+      dockerfile: docker/data-ingestion.Dockerfile
+    image: colombian-news/data-ingestion:latest
+    working_dir: /app
+    volumes:
+      - ./:/app
+    environment:
+      CHROME_BIN: /usr/bin/chromium
+    command: ["python", "scripts/scraping/elcolombiano.py", "list"]
+
+  feature_extraction:
+    build:
+      context: .
+      dockerfile: docker/feature-extraction.Dockerfile
+    image: colombian-news/feature-extraction:latest
+    working_dir: /app
+    volumes:
+      - ./:/app
+    command: ["python", "scripts/pipeline/feature_extraction.py", "--help"]
+
+  modeling:
+    build:
+      context: .
+      dockerfile: docker/modeling.Dockerfile
+    image: colombian-news/modeling:latest
+    working_dir: /app
+    volumes:
+      - ./:/app
+    environment:
+      MPLBACKEND: Agg
+    command: ["python", "scripts/pipeline/modeling.py", "--help"]
+
+  api:
+    build:
+      context: .
+      dockerfile: docker/api.Dockerfile
+    image: colombian-news/api:latest
+    working_dir: /app
+    volumes:
+      - ./:/app
+      - ./artifacts:/app/artifacts
+      - ./models_cache:/app/.cache/huggingface
+    environment:
+      API_HOST: 0.0.0.0
+      API_PORT: 8000
+      SENTIMENT_MODEL_NAME: ignacio-ave/beto-sentiment-analysis-spanish
+      SENTIMENT_EAGER_LOAD: "false"
+      CLASSIFIER_ENABLED: "true"
+      CLASSIFIER_MODEL_PATH: /app/artifacts/classifier/model.joblib
+      CLASSIFIER_VECTORIZER_PATH: /app/artifacts/classifier/vectorizer.joblib
+    ports:
+      - "8000:8000"
+    command: ["python", "scripts/api/serve.py", "--host", "0.0.0.0", "--port", "8000"]

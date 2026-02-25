@@ -1,0 +1,5 @@
+-r common.txt
+scipy>=1.13
+scikit-learn>=1.5
+spacy>=3.7
+Unidecode>=1.3

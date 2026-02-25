@@ -20,6 +20,42 @@ from urllib.parse import urlparse, urljoin, urlunparse
 import re
 
 
+SOCIAL_HOSTS = (
+    "facebook.com",
+    "instagram.com",
+    "twitter.com",
+    "x.com",
+    "youtube.com",
+    "tiktok.com",
+    "linkedin.com",
+    "wa.me",
+    "whatsapp.com",
+    "t.me",
+)
+BAD_PATH_PREFIX = (
+    "/suscripciones",
+    "/newsletter",
+    "/podcast",
+    "/multimedia",
+    "/deportes/futbol",
+)
+BAD_SUBSTR = ("share", "sharer.php", "dialog/send", "utm_", "redirect_uri=")
+GOOD_SECTIONS = {
+    "colombia",
+    "negocios",
+    "internacional",
+    "cultura",
+    "politica",
+    "deportes",
+    "tecnologia",
+    "opinion",
+    "economia",
+    "medellin",
+    "antioquia",
+}
+ART_ID_REGEX = re.compile(r"-[A-Z]{1,6}\d{3,}$")
+
+
 def _normalize(base_url: str, href: str):
     absu = urljoin(base_url, href)
     p = urlparse(absu)
@@ -27,7 +63,7 @@ def _normalize(base_url: str, href: str):
     return urlunparse(p)
 
 
-def _is_internal_or_elcolombiano(href: str , SOCIAL_HOSTS):
+def _is_internal_or_elcolombiano(href: str, SOCIAL_HOSTS=SOCIAL_HOSTS):
     if not href or href.startswith(("#", "javascript:", "mailto:", "tel:")):
         return False
     

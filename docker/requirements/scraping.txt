@@ -1,0 +1,3 @@
+-r common.txt
+selenium>=4.24
+webdriver-manager>=4.0

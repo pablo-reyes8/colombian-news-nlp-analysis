@@ -1,7 +1,7 @@
 import re 
 import requests 
-import BeautifulSoup
 import json
+from bs4 import BeautifulSoup
 
 columnistas= ['https://www.elcolombiano.com/cronologia/noticias/meta/diego-santos',
 'https://www.elcolombiano.com/cronologia/noticias/meta/luis-diego-monsalve',

@@ -1,7 +1,6 @@
 
 import re 
 import requests 
-import BeautifulSoup
 import json
 import pickle
 import requests

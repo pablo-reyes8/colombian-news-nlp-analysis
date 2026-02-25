@@ -226,17 +226,18 @@ def run_scrapping_process(
     base_Semana_url: str,
     drive_path: str,):
   
-
   # Selenium driver
   driver = get_selenium_driver()
+  try:
+    # Getting news urls
+    catalog_web = access_to_Semana_category_news_catalog(driver, category, base_Semana_url, num_of_ver_mas_clicks)
+    news_urls_web = get_news_urls_from_catalog(catalog_web, pattern_catalog_canonical, pattern_catalog_soup)
+    valid_news_urls_web = get_valid_news_urls(news_urls_web, base_Semana_url)
 
-  # Getting news urls
-  catalog_web = access_to_Semana_category_news_catalog(driver, category, base_Semana_url, num_of_ver_mas_clicks)
-  news_urls_web = get_news_urls_from_catalog(catalog_web, pattern_catalog_canonical, pattern_catalog_soup)
-  valid_news_urls_web = get_valid_news_urls(news_urls_web, base_Semana_url)
-
-  # Getting scrapped content
-  news_content_ls = get_news_content_from_url_ls(valid_news_urls_web, trim_pattern, tag_ls, category)
+    # Getting scrapped content
+    news_content_ls = get_news_content_from_url_ls(valid_news_urls_web, trim_pattern, tag_ls, category)
+  finally:
+    driver.quit()
 
   # Write parquet table
   df = pd.DataFrame(news_content_ls)
@@ -256,11 +257,11 @@ def get_news_df(
     final_published_date: str = '2025-08-30',
     filter_df_by_dates_flag: bool = True,) -> pd.DataFrame:
 
-  extracted_news_ls = os.listdir(drive_path)
+  extracted_news_ls = os.listdir(drive_folder_path)
 
   news_ls = []
   for file in extracted_news_ls:
-    news_ls.append(pd.read_parquet(drive_path + file))
+    news_ls.append(pd.read_parquet(os.path.join(drive_folder_path, file)))
 
   df = pd.concat(news_ls)
   df = df[~df[original_published_date_col].isnull()]

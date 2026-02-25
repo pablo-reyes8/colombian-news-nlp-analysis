@@ -1,0 +1,34 @@
+.git
+.gitignore
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+.venv/
+venv/
+.env
+.env.*
+.ipynb_checkpoints/
+
+# notebooks y visualizaciones (se montan por volumen si se necesitan)
+final_notebooks/
+initial_visualizations/
+model_experiments/
+
+# datos pesados / outputs
+*.rar
+*.zip
+*.tar
+*.gz
+data/**/data/*.csv
+data/**/data/*.xlsx
+data/**/*.parquet
+models_cache/
+artifacts/**/*.pt
+artifacts/**/*.bin
+
+# no excluir código fuente
+!data/**/*.py
+!src/**/*.py
+!scripts/**/*.py

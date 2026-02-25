@@ -1,0 +1,9 @@
+-r common.txt
+scipy>=1.13
+scikit-learn>=1.5
+fastapi>=0.115
+uvicorn[standard]>=0.30
+python-multipart>=0.0.9
+torch>=2.4
+transformers>=4.44
+tqdm>=4.66
