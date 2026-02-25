@@ -1,3 +1,5 @@
+<a id="top"></a>
+
 # 📰 Colombian News NLP Analysis
 
 [![Python](https://img.shields.io/badge/python-3.10%2B-blue)](https://www.python.org/)
@@ -13,6 +15,26 @@
 A Natural Language Processing (NLP) project focused on **scraping, cleaning, and analyzing Colombian news** from multiple sources (_El Espectador, Semana, El Colombiano_) to uncover patterns in **topics, sentiment, and named entities**.  
 The goal is to transform a large and fragmented corpus of news into a **structured map of trends, emotions, and key actors** in the Colombian media landscape.
 
+<a id="index"></a>
+
+## 🧭 Index
+
+- [Project Overview](#project-overview)
+- [Features](#features)
+- [Key Findings](#key-findings)
+- [Repository Structure](#repository-structure)
+- [Recent Cleanup & API Improvements](#recent-cleanup-api-improvements)
+- [Example Visualizations](#example-visualizations)
+- [Showcase (Initial Visualizations)](#showcase-initial-visualizations)
+- [Showcase (Modeling & Inference)](#showcase-modeling-inference)
+- [Future Work](#future-work)
+- [Author](#author)
+- [License](#license)
+
+---
+
+<a id="project-overview"></a>
+
 ## 📌 Project Overview
 
 Every day, hundreds of news articles are published in Colombia across multiple outlets, making it difficult to obtain a clear and unbiased overview of the national agenda.  
@@ -26,6 +48,8 @@ This project centralizes that information by:
   - Named Entity Recognition (NER).
 
 ---
+
+<a id="features"></a>
 
 ## 🚀 Features
 
@@ -48,6 +72,8 @@ This project centralizes that information by:
 
 ---
 
+<a id="key-findings"></a>
+
 ## 📊 Key Findings
 
 - **Topic Distribution**: News are heavily biased towards politics and society (~40%), while economy and regions are underrepresented.  
@@ -58,6 +84,8 @@ This project centralizes that information by:
 - **NER**: Key entities include politicians, institutions (Fiscalía, Centro Democrático), and major cities (Bogotá, Medellín, Washington).
 
 ---
+
+<a id="repository-structure"></a>
 
 ## 📂 Repository Structure
 
@@ -87,6 +115,34 @@ colombian-news-nlp-analysis/
 
 
 ---
+
+<a id="recent-cleanup-api-improvements"></a>
+
+## 🛠️ Recent Cleanup & API Improvements
+
+This README now reflects a project cleanup pass and API hardening update while preserving the original repository content and structure.
+
+- **Canonical package names in `src/`**
+  - Consolidated to `src/preprocessing/` (removed duplicate `src/preprocesing/`)
+  - Consolidated to `src/corpus_analysis/` (removed duplicate `src/corpus_analisis/`)
+- **Updated imports and references**
+  - Pipeline imports now use canonical paths
+  - Notebook and documentation references were aligned with the canonical package names
+- **FastAPI improvements (`src/api`)**
+  - Better `503` responses when model services are unavailable
+  - Readiness endpoint reports degraded status when a required service/model is not ready
+  - Added `POST /v1/models/warmup` to preload models
+  - Added module entrypoint support (`python -m src.api`)
+- **Packaging cleanup (`pyproject.toml`)**
+  - Dependency list aligned with actual modules used by the project
+  - Added CLI script entrypoints for API and pipeline commands
+- **Scraping fixes**
+  - Corrected invalid `BeautifulSoup` imports in `src/scraping/elcolombiano/*`
+
+---
+
+<a id="example-visualizations"></a>
+
 ## 📈 Example Visualizations
 
 - **Sentiment evolution over time** → smoothed with moving averages.  
@@ -96,6 +152,61 @@ colombian-news-nlp-analysis/
 - **Interactive NER explorer** → entity frequency by category and time.  
 
 ---
+
+<a id="showcase-initial-visualizations"></a>
+
+## 🖼️ Showcase (Initial Visualizations)
+
+<table>
+  <tr>
+    <td width="50%" align="center">
+      <b>Cloud of Words</b><br/>
+      <img src="initial_visualizations/Cloud%20of%20Words.png" alt="Cloud of Words" width="100%"/>
+    </td>
+    <td width="50%" align="center">
+      <b>Graph3 - Espectador labels</b><br/>
+      <img src="initial_visualizations/Graph3%20-%20Espectador%20labels.png" alt="Graph3 - Espectador labels" width="100%"/>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%" align="center">
+      <b>Bi-Grams Coprus</b><br/>
+      <img src="initial_visualizations/Bi-Grams%20Coprus.png" alt="Bi-Grams Coprus" width="100%"/>
+    </td>
+    <td width="50%" align="center">
+      <b>Tri-Grams Corpus</b><br/>
+      <img src="initial_visualizations/Tri-Grams%20Corpus.png" alt="Tri-Grams Corpus" width="100%"/>
+    </td>
+  </tr>
+</table>
+
+---
+
+<a id="showcase-modeling-inference"></a>
+
+## 🤖 Showcase (Modeling & Inference)
+
+<table>
+  <tr>
+    <td width="50%" align="center">
+      <b>Sentiment Scores</b><br/>
+      <img src="model_experiments/Sentiment%20Scores.png" alt="Sentiment Scores" width="100%"/>
+    </td>
+    <td width="50%" align="center">
+      <b>Time Series Sentiments</b><br/>
+      <img src="model_experiments/Time%20Series%20Sentiments.png" alt="Time Series Sentiments" width="100%"/>
+    </td>
+  </tr>
+</table>
+
+<p align="center">
+  <b>Tri-Grams Sentiment</b><br/>
+  <img src="model_experiments/Tri-Grams%20Sentiment.png" alt="Tri-Grams Sentiment" width="80%"/>
+</p>
+
+---
+
+<a id="future-work"></a>
 
 ## 🔮 Future Work
 
@@ -107,6 +218,8 @@ colombian-news-nlp-analysis/
 
 ---
 
+<a id="author"></a>
+
 ## 👤 Author
 
 This project was developed as part of the **Machine Learning Diploma at Universidad Nacional de Colombia (UNAL)**.  
@@ -115,6 +228,8 @@ This project was developed as part of the **Machine Learning Diploma at Universi
 🔗 [Linkedin](https://www.linkedin.com/in/pablo-alejandro-reyes-granados/)
 
 ---
+
+<a id="license"></a>
 
 ## 📜 License
 
