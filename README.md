@@ -74,7 +74,7 @@ colombian-news-nlp-analysis/
 │ ├── preprocessing/ # Cleaning pipeline (main_preprocessing.py)
 │ ├── embeddings/ # BoW, TF-IDF, BERT + viz
 │ ├── modeling/ # MLP, SVM, RF, sentiment, NER
-│ └── corpus_analisis/ # EDA + visualization helpers
+│ └── corpus_analysis/ # EDA + visualization helpers
 │
 ├── notebooks/ # Exploratory/analysis notebooks
 ├── figures/ # Generated plots
