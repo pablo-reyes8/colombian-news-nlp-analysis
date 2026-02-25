@@ -1,8 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass
 from typing import List, Optional, Dict, Tuple
-import os
-import argparse
 
 import numpy as np
 import pandas as pd
@@ -173,48 +171,17 @@ def predict_dataframe(
     return out_df
 
 
-def _build_argparser() -> argparse.ArgumentParser:
-    p = argparse.ArgumentParser(description="Inferencia de sentimiento por lotes (HF SequenceClassification).")
-    p.add_argument("--input_csv", type=str, required=True, help="Ruta al CSV de entrada.")
-    p.add_argument("--output_csv", type=str, required=True, help="Ruta al CSV de salida.")
-    p.add_argument("--model_name", type=str, default=InferenceConfig.model_name)
-    p.add_argument("--text_col", type=str, default=InferenceConfig.text_col)
-    p.add_argument("--out_label_col", type=str, default=InferenceConfig.out_label_col)
-    p.add_argument("--out_score_col", type=str, default=InferenceConfig.out_score_col)
-    p.add_argument("--batch_size", type=int, default=InferenceConfig.batch_size)
-    p.add_argument("--max_length", type=int, default=InferenceConfig.max_length)
-    p.add_argument("--stride", type=int, default=InferenceConfig.stride)
-    p.add_argument("--device", type=str, default=None, help="'cpu' o 'cuda'")
-    p.add_argument("--num_workers", type=int, default=InferenceConfig.num_workers)
-    p.add_argument("--no_pin_memory", action="store_true", help="Desactiva pin_memory.")
-    p.add_argument("--add_proba_cols", action="store_true", help="Agrega columnas de probabilidad por clase.")
-    p.add_argument("--no_progress", action="store_true", help="Oculta barra de progreso.")
-    return p
+def predict_csv(
+    input_csv: str,
+    output_csv: str,
+    cfg: InferenceConfig = InferenceConfig(),) -> pd.DataFrame:
+    """
+    Carga un CSV, ejecuta inferencia de sentimiento y guarda el resultado.
 
-
-def main():
-    ap = _build_argparser()
-    args = ap.parse_args()
-    df = pd.read_csv(args.input_csv)
-
-    cfg = InferenceConfig(
-        model_name=args.model_name,
-        text_col=args.text_col,
-        out_label_col=args.out_label_col,
-        out_score_col=args.out_score_col,
-        batch_size=args.batch_size,
-        max_length=args.max_length,
-        stride=args.stride,
-        device=args.device,
-        num_workers=args.num_workers,
-        pin_memory=not args.no_pin_memory,
-        add_proba_cols=args.add_proba_cols,
-        progress=not args.no_progress)
-
+    Returns:
+        pd.DataFrame: DataFrame de salida (también guardado en `output_csv`).
+    """
+    df = pd.read_csv(input_csv)
     out_df = predict_dataframe(df, cfg)
-    out_df.to_csv(args.output_csv, index=False)
-    print(f"[OK] Guardado en: {args.output_csv}")
-
-
-if __name__ == "__main__":
-    main()
+    out_df.to_csv(output_csv, index=False)
+    return out_df

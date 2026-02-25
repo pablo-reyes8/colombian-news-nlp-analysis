@@ -109,8 +109,10 @@ class BowFeaturizerDF:
         self.vectorizer = joblib.load(path)
         self.feature_names_ = list(self.vectorizer.get_feature_names_out())
 
-
-if __name__ == "__main__":
+def run_demo():
+    """
+    Demo mínima del featurizer BOW sobre un DataFrame pequeño.
+    """
     df = pd.DataFrame({
         "id": [1, 2, 3],
         "texto_clean": [
@@ -142,3 +144,11 @@ if __name__ == "__main__":
     bow2 = BowFeaturizerDF()
     bow2.load_vectorizer("bow_vectorizer.joblib")
     df_bow_loaded, X_loaded = bow2.transform(df, text_col="texto_clean", out_col="bow_loaded", tolist=False)
+    return {
+        "df_bow": df_bow,
+        "X": X,
+        "df_bow2": df_bow2,
+        "X2": X2,
+        "df_bow_loaded": df_bow_loaded,
+        "X_loaded": X_loaded,
+    }

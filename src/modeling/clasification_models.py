@@ -263,21 +263,33 @@ def entrenar_svm_randomsearch(
     return best_model, results
 
 
-if __name__ == "__main__":
-     from sklearn.datasets import fetch_20newsgroups
-     from sklearn.feature_extraction.text import TfidfVectorizer
+def run_demo():
+    """
+    Demo rápida con 20 Newsgroups para validar los pipelines de entrenamiento.
+    """
+    from sklearn.datasets import fetch_20newsgroups
+    from sklearn.feature_extraction.text import TfidfVectorizer
 
-     data = fetch_20newsgroups(subset="train",
-                               categories=["sci.space", "talk.politics.mideast", "rec.sport.hockey"])
-     vec = TfidfVectorizer(max_features=5000, ngram_range=(1,2))
-     X = vec.fit_transform(data.data)
-     y = data.target
+    data = fetch_20newsgroups(
+        subset="train",
+        categories=["sci.space", "talk.politics.mideast", "rec.sport.hockey"])
+    vec = TfidfVectorizer(max_features=5000, ngram_range=(1, 2))
+    X = vec.fit_transform(data.data)
+    y = data.target
 
-     # SVM lineal
-     best_svm, svm_cv = entrenar_svm_randomsearch(X, y, n_iter=20)
+    # SVM lineal
+    best_svm, svm_cv = entrenar_svm_randomsearch(X, y, n_iter=20)
 
-     # Random Forest
-     best_rf, rf_cv = entrenar_rf_randomsearch(X, y, n_iter=20)
+    # Random Forest
+    best_rf, rf_cv = entrenar_rf_randomsearch(X, y, n_iter=20)
 
-     # MLP (convierte X a denso)
-     best_mlp, mlp_cv = entrenar_mlp_randomsearch(X, y, n_iter=15)
+    # MLP (convierte X a denso)
+    best_mlp, mlp_cv = entrenar_mlp_randomsearch(X, y, n_iter=15)
+    return {
+        "best_svm": best_svm,
+        "svm_cv": svm_cv,
+        "best_rf": best_rf,
+        "rf_cv": rf_cv,
+        "best_mlp": best_mlp,
+        "mlp_cv": mlp_cv,
+    }

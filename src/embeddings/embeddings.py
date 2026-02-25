@@ -1,7 +1,7 @@
 import torch
 import numpy as np
 from transformers import AutoTokenizer, AutoModel
-from typing import List, Union, Literal
+from typing import List, Literal
 import pandas as pd
 
 class BertEmbedderDF:
@@ -17,7 +17,7 @@ class BertEmbedderDF:
         model_name: str = "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",
         pooling: Literal["mean", "cls"] = "mean",
         normalize: bool = True,
-        max_length: int = 256,)
+        max_length: int = 256,):
 
         self.tokenizer = AutoTokenizer.from_pretrained(model_name, use_fast=True)
         self.model = AutoModel.from_pretrained(model_name)
@@ -98,7 +98,10 @@ class BertEmbedderDF:
         return (df_out, X) if return_matrix else df_out
 
 
-if __name__ == "__main__":
+def run_demo():
+    """
+    Demo mínima de generación de embeddings BERT sobre un DataFrame pequeño.
+    """
     df = pd.DataFrame({
         "id": [1, 2, 3],
         "texto_clean": [
@@ -120,4 +123,5 @@ if __name__ == "__main__":
         tolist=True )
 
     print(df_emb.head())
-    print("Matriz:", X.shape)  
+    print("Matriz:", X.shape)
+    return {"df_emb": df_emb, "X": X}
