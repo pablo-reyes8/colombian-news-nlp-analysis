@@ -155,7 +155,7 @@ This README now reflects a project cleanup pass and API hardening update while p
 
 <a id="showcase-initial-visualizations"></a>
 
-## 🖼️ Showcase (Initial Visualizations)
+## 🖼️ Showcase (EDA Visualizations)
 
 <table>
   <tr>
